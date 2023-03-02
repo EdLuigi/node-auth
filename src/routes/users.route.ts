@@ -17,7 +17,7 @@ usersRouter.get("/users", (req: Request, res: Response, next: NextFunction) => {
         { userName: "Marcelo" },
         { userName: "Antonio" },
     ];
-    res.status(StatusCodes.OK).json(users);
+    res.status(StatusCodes.OK).send(users);
 });
 
 usersRouter.get("/users/:uuid", (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
@@ -28,6 +28,14 @@ usersRouter.get("/users/:uuid", (req: Request<{ uuid: string }>, res: Response, 
 usersRouter.post("/users", (req: Request, res: Response, next: NextFunction) => {
     const newUser = req.body;
     res.status(StatusCodes.CREATED).send(newUser);
+});
+
+usersRouter.put("/users/:uuid", (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
+    const uuid = req.params.uuid;
+    const mondifiedUser = req.body;
+
+    mondifiedUser.uuid = uuid;
+    res.status(StatusCodes.OK).send({ mondifiedUser });
 });
 
 export default usersRouter;
