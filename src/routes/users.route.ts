@@ -38,4 +38,8 @@ usersRouter.put("/users/:uuid", (req: Request<{ uuid: string }>, res: Response, 
     res.status(StatusCodes.OK).send({ mondifiedUser });
 });
 
+usersRouter.delete("/users/:uuid", (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
+    res.sendStatus(StatusCodes.OK);
+});
+
 export default usersRouter;
